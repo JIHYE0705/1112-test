@@ -80,23 +80,23 @@
         function posting() {
             let content = $('#content').val();
             let q = confirm("저장된 메세지를 확인하시겠어요?");
-            if (q === true) {
+            let data = {"content" : content};
+            if(q === true) {
                 $.ajax({
                     type: "POST",
                     url: "/api/comments",
-                    data: {"content": content},
+                    data: JSON.stringify(data),
                     contentType: "application/json",
                     success: function (response) {
-                        // document.form['content'].submit();
                         window.location.reload();
                     }
-
                 });
-            } else {
-                $('#content').val('');
-                return;
-
             }
+            else {
+                $('#content').val('');
+            }
+
+
         }
     </script>
 
